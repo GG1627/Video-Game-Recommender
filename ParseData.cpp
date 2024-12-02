@@ -94,20 +94,35 @@ void ParseData::ParseCSVFile() {
         if(ratingStr.empty()){
             ratingStr = "0";
         }
-        metacritic = stod(metacriticStr);
+        metacritic = stoi(metacriticStr);
         rating = stod(ratingStr);
 
 
         if(metacriticStr != "0") {
             unordered_set<string> genresSet;
+            unordered_set<string> platformsSet;  // Create a set for platforms
             size_t start = 0, end;
+
+            // Extract genres
             while ((end = genres.find("||", start)) != string::npos) {
                 genresSet.insert(genres.substr(start, end - start)); // Extract genre
                 start = end + 2;  // Move past "||"
             }
             genresSet.insert(genres.substr(start));  // Add the last genre
-            games.emplace_back(name, metacritic, rating, genresSet);
+
+            start = 0;  // Reset the start position for platforms
+
+            // Extract platforms (assuming platforms are also separated by "||")
+            while ((end = platforms.find("||", start)) != string::npos) {
+                platformsSet.insert(platforms.substr(start, end - start)); // Extract platform
+                start = end + 2;  // Move past "||"
+            }
+            platformsSet.insert(platforms.substr(start));  // Add the last platform
+
+            // Add the game object with both genres and platforms sets
+            games.emplace_back(name, metacritic, rating, genresSet, platformsSet);
         }
+
     }
     file.close();
 }

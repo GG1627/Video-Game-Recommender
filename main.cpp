@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "Game.h"
+#include "Similar.h"
 #include "ParseData.h"
 using namespace std;
 
@@ -29,5 +30,17 @@ int main(){
 
     if (!gameFound) {
         cout << "Game not found." << endl;  // if game not found
+    }
+
+    Similar sim(op.games);
+
+    vector<Game> similarGames = sim.extractGenre(gameName);  // Call the function to get similar games
+    cout << "Size 1: "<< similarGames.size() << endl;
+    similarGames = sim.extractPlatform(gameName, similarGames);  // Call the function to get similar games
+    cout << "Size 2: "<< similarGames.size() << endl;
+
+    cout << "Printing first 5 similar games" << endl;
+    for(int p=0; p < 5; p++){
+        similarGames[p].dispaly();
     }
 }
