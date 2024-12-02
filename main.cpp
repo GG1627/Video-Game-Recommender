@@ -4,11 +4,14 @@
 #include "Game.h"
 #include "Similar.h"
 #include "ParseData.h"
+#include "SortingAlgorithms.h"
+
 using namespace std;
 
 
 int main(){
     ParseData op;
+    SortingAlgorithms algo;
     op.ParseCSVFile();
     cout << "everything worked" << endl;
 
@@ -39,8 +42,11 @@ int main(){
     similarGames = sim.extractPlatform(gameName, similarGames);  // Call the function to get similar games
     cout << "Size 2: "<< similarGames.size() << endl;
 
+    algo.cocktailSort(similarGames, 0);
+
+    cout << "Size of arr: " << similarGames.size() << endl;
     cout << "Printing first 5 similar games" << endl;
-    for(int p=0; p < 5; p++){
+    for(int p=similarGames.size()-1; p > similarGames.size()-6 ; p--){
         similarGames[p].dispaly();
     }
 }
