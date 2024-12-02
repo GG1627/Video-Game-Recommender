@@ -5,6 +5,7 @@
 #include "Similar.h"
 #include "ParseData.h"
 #include "SortingAlgorithms.h"
+#include <chrono>
 
 using namespace std;
 
@@ -44,6 +45,7 @@ int main(){
     cout << "Select 1 for a QuickSort, Select 2 for a CocktailSort." << endl;
     cin >> selection;
 
+    auto start = std::chrono::high_resolution_clock::now();
     if (selection == 1) {
         algo.quickSort(similarGames, 0 ,similarGames.size()-1);
     }
@@ -51,12 +53,14 @@ int main(){
         algo.cocktailSort(similarGames, similarGames.size());
     }
 
+    auto end = std::chrono::high_resolution_clock::now();
 
+    std::chrono::duration<double, std::milli> elapsed = end - start;
 
     cout << "Printing first 5 similar games" << endl;
     for(int p=similarGames.size()-1; p > similarGames.size()-6 ; p--){
         similarGames[p].dispaly();
     }
 
-
+    std::cout << "Elapsed time: " << elapsed.count() << " ms\n";
 }
