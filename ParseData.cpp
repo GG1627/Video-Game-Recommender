@@ -98,15 +98,16 @@ void ParseData::ParseCSVFile() {
         rating = stod(ratingStr);
 
 
-        vector<string> genresVect;
-        size_t start = 0, end;
-        while ((end = genres.find("||", start)) != string::npos) {
-            genresVect.push_back(genres.substr(start, end - start)); // Extract genre
-            start = end + 2;  // Move past "||"
+        if(metacriticStr != "0") {
+            unordered_set<string> genresSet;
+            size_t start = 0, end;
+            while ((end = genres.find("||", start)) != string::npos) {
+                genresSet.insert(genres.substr(start, end - start)); // Extract genre
+                start = end + 2;  // Move past "||"
+            }
+            genresSet.insert(genres.substr(start));  // Add the last genre
+            games.emplace_back(name, metacritic, rating, genresSet);
         }
-        genresVect.push_back(genres.substr(start));  // Add the last genre
-
-        games.emplace_back(name, metacritic, rating, genresVect);
     }
     file.close();
 }
