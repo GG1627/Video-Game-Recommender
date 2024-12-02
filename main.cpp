@@ -38,15 +38,25 @@ int main(){
     Similar sim(op.games);
 
     vector<Game> similarGames = sim.extractGenre(gameName);  // Call the function to get similar games
-    cout << "Size 1: "<< similarGames.size() << endl;
     similarGames = sim.extractPlatform(gameName, similarGames);  // Call the function to get similar games
-    cout << "Size 2: "<< similarGames.size() << endl;
 
-    algo.cocktailSort(similarGames, 0);
+    int selection = 0;
+    cout << "Select 1 for a QuickSort, Select 2 for a CocktailSort." << endl;
+    cin >> selection;
 
-    cout << "Size of arr: " << similarGames.size() << endl;
+    if (selection == 1) {
+        algo.quickSort(similarGames, 0 ,similarGames.size()-1);
+    }
+    else {
+        algo.cocktailSort(similarGames, similarGames.size());
+    }
+
+
+
     cout << "Printing first 5 similar games" << endl;
     for(int p=similarGames.size()-1; p > similarGames.size()-6 ; p--){
         similarGames[p].dispaly();
     }
+
+
 }
