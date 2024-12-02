@@ -26,6 +26,7 @@ void ParseData::ParseCSVFile() {
         // target values
         string name, metacriticStr, ratingStr, genres;
         double metacritic, rating;
+        int achievementCount;
 
         // other values
         string id;
@@ -94,8 +95,12 @@ void ParseData::ParseCSVFile() {
         if(ratingStr.empty()){
             ratingStr = "0";
         }
+        if(achievements_count.empty()){
+            achievements_count = "0";
+        }
         metacritic = stoi(metacriticStr);
         rating = stod(ratingStr);
+        achievementCount = stoi(achievements_count);
 
 
         if(metacriticStr != "0") {
@@ -120,7 +125,7 @@ void ParseData::ParseCSVFile() {
             platformsSet.insert(platforms.substr(start));  // Add the last platform
 
             // Add the game object with both genres and platforms sets
-            games.emplace_back(name, metacritic, rating, genresSet, platformsSet);
+            games.emplace_back(name, metacritic, rating, achievementCount, genresSet, platformsSet);
         }
 
     }

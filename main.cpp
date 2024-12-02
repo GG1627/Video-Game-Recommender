@@ -47,7 +47,7 @@ int main(){
 
     auto start = std::chrono::high_resolution_clock::now();
     if (selection == 1) {
-        algo.quickSort(similarGames, 0 ,similarGames.size()-1);
+        algo.quickSortMetacritic(similarGames, 0 ,similarGames.size()-1);
     }
     else {
         algo.cocktailSort(similarGames, similarGames.size());

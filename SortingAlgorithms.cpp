@@ -1,7 +1,3 @@
-//
-// Created by johnl on 12/1/2024.
-//
-
 #include "SortingAlgorithms.h"
 #include <utility>
 using namespace std;
@@ -56,17 +52,17 @@ void SortingAlgorithms::cocktailSort(vector<Game>& games, int size) {
     }
 };
 
-void SortingAlgorithms::quickSort(vector<Game>& games, int low, int high) {
+void SortingAlgorithms::quickSortMetacritic(vector<Game>& games, int low, int high) {
     if (low < high)
     {
-        int pivot = partition(games, low, high);
-        quickSort(games, low, pivot - 1);
-        quickSort(games, pivot + 1, high);
+        int pivot = partitionMetacritic(games, low, high);
+        quickSortMetacritic(games, low, pivot - 1);
+        quickSortMetacritic(games, pivot + 1, high);
     }
 }
 
 
-int SortingAlgorithms::partition(vector<Game>& games, int low, int high) {
+int SortingAlgorithms::partitionMetacritic(vector<Game> &games, int low, int high) {
     double pivot = games[low].metacritic;
     int up = low, down = high;
 
@@ -89,3 +85,75 @@ int SortingAlgorithms::partition(vector<Game>& games, int low, int high) {
     swap(games[low], games[down]);
     return down;
 }
+
+
+void SortingAlgorithms::quickSortAchievmentCount(vector<Game> &games, int low, int high) {
+    if (low < high)
+    {
+        int pivot = partitionAchievmentCount(games, low, high);
+        quickSortAchievmentCount(games, low, pivot - 1);
+        quickSortAchievmentCount(games, pivot + 1, high);
+    }
+}
+
+
+int SortingAlgorithms::partitionAchievmentCount(vector<Game> &games, int low, int high) {
+    double pivot = games[low].achievementCount;
+    int up = low, down = high;
+
+    while(up < down)
+    {
+        for (int j = up; j < high; j++)
+        {
+            if (games[up].achievementCount > pivot)
+                break;
+            up++;
+        }
+        for (int j = high; j > low; j--) {
+            if(games[down].achievementCount < pivot)
+                break;
+            down--;
+        }
+        if (up < down)
+            swap(games[up], games[down]);
+    }
+    swap(games[low], games[down]);
+    return down;
+}
+
+
+
+void SortingAlgorithms::quickSortPublishers(vector<Game> &games, int low, int high) {
+    if (low < high)
+    {
+        int pivot = partitionPublishers(games, low, high);
+        quickSortPublishers(games, low, pivot - 1);
+        quickSortPublishers(games, pivot + 1, high);
+    }
+}
+
+
+int SortingAlgorithms::partitionPublishers(vector<Game> &games, int low, int high) {
+    double pivot = games[low].achievementCount;
+    int up = low, down = high;
+
+    while(up < down)
+    {
+        for (int j = up; j < high; j++)
+        {
+            if (games[up].achievementCount > pivot)
+                break;
+            up++;
+        }
+        for (int j = high; j > low; j--) {
+            if(games[down].achievementCount < pivot)
+                break;
+            down--;
+        }
+        if (up < down)
+            swap(games[up], games[down]);
+    }
+    swap(games[low], games[down]);
+    return down;
+}
+

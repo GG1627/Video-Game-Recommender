@@ -15,13 +15,16 @@ class Game{
         string name;
         int metacritic;
         double rating;
+        int achievementCount;
         unordered_set<string> gameGenres;
         unordered_set<string> gamePlatforms;
+        unordered_set<string> publishers;
 
-    Game(const string& name,double metacritic, double rating, const unordered_set<string>& gameGenres, const unordered_set<string>& gamePlatforms){
+    Game(const string& name,double metacritic, double rating, int achievementCount, const unordered_set<string>& gameGenres, const unordered_set<string>& gamePlatforms){
             this->name = name;
             this->metacritic = metacritic;
             this->rating = rating;
+            this->achievementCount = achievementCount;
             this->gameGenres = gameGenres;
             this->gamePlatforms = gamePlatforms;
         }
