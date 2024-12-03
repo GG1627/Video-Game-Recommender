@@ -16,31 +16,44 @@ class Game{
         int metacritic;
         double rating;
         int achievementCount;
+        int suggestionsCount;
         unordered_set<string> gameGenres;
         unordered_set<string> gamePlatforms;
-        unordered_set<string> publishers;
 
-    Game(const string& name,double metacritic, double rating, int achievementCount, const unordered_set<string>& gameGenres, const unordered_set<string>& gamePlatforms){
+    Game(const string& name,double metacritic, double rating, int suggestionsCount, int achievementCount, const unordered_set<string>& gameGenres,
+         const unordered_set<string>& gamePlatforms){
             this->name = name;
             this->metacritic = metacritic;
             this->rating = rating;
+            this->suggestionsCount = suggestionsCount;
             this->achievementCount = achievementCount;
             this->gameGenres = gameGenres;
             this->gamePlatforms = gamePlatforms;
         }
 
-    void dispaly() const{
+    void dispalyByMetacritic() const{
         cout << "Name: " << name << endl;
         cout << "Metacritic: " << metacritic << endl;
-        cout << "Rating: " << rating << endl;
-        cout << "----------GENRES----------" << endl;
-        for(auto it : gameGenres){
-            cout << it << endl;
-        }
-        cout << "----------PLATFORMS----------" << endl;
-        for(auto it : gamePlatforms){
-            cout << it << endl;
-        }
+//        cout << "Rating: " << rating << endl;
+//        cout << "Suggestion Count" << suggestionsCount << endl;
+//        cout << "----------GENRES----------" << endl;
+//        for(auto it : gameGenres){
+//            cout << it << endl;
+//        }
+//        cout << "----------PLATFORMS----------" << endl;
+//        for(auto it : gamePlatforms){
+//            cout << it << endl;
+//        }
+    }
+
+    void displayByAchievementCount() const{
+        cout << "Name: " << name << endl;
+        cout << "Achievement Count: " << achievementCount << endl;
+    }
+
+    void displayBySuggestionCount() const{
+        cout << "Name: " << name << endl;
+        cout << "Achievement Count: " << achievementCount << endl;
     }
 };
 

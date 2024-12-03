@@ -26,9 +26,9 @@ class Similar {
         throw runtime_error("Game not found!");
     }
 
+
     vector<Game> extractGenre(const string& gameName);
     vector<Game> extractPlatform(const string& gamePlatform, vector<Game> filteredGames);
-
 };
 
 

@@ -26,7 +26,7 @@ void ParseData::ParseCSVFile() {
         // target values
         string name, metacriticStr, ratingStr, genres;
         double metacritic, rating;
-        int achievementCount;
+        int achievementCount,  suggestionsCount;
 
         // other values
         string id;
@@ -52,7 +52,7 @@ void ParseData::ParseCSVFile() {
         string playtime;
         string achievements_count;
         string ratings_count;
-        string suggestions_count;
+        string suggestions_count_str;
         string game_series_count;
         string reviews_count;
         string platforms;
@@ -61,7 +61,7 @@ void ParseData::ParseCSVFile() {
         getline(ss, playtime, ',');
         getline(ss, achievements_count, ',');
         getline(ss, ratings_count, ',');
-        getline(ss, suggestions_count, ',');
+        getline(ss, suggestions_count_str, ',');
         getline(ss, game_series_count, ',');
         getline(ss, reviews_count, ',');
         getline(ss, platforms, ',');
@@ -98,14 +98,21 @@ void ParseData::ParseCSVFile() {
         if(achievements_count.empty()){
             achievements_count = "0";
         }
+        if(suggestions_count_str.empty()){
+            suggestions_count_str = "0";
+        }
+
         metacritic = stoi(metacriticStr);
         rating = stod(ratingStr);
         achievementCount = stoi(achievements_count);
+        //cout << "Suggestion Count: " << suggestions_count_str << endl;
+        suggestionsCount = stoi(suggestions_count_str);
 
 
         if(metacriticStr != "0") {
             unordered_set<string> genresSet;
-            unordered_set<string> platformsSet;  // Create a set for platforms
+            unordered_set<string> platformsSet;
+            unordered_set<string> publishersSet;
             size_t start = 0, end;
 
             // Extract genres
@@ -125,7 +132,7 @@ void ParseData::ParseCSVFile() {
             platformsSet.insert(platforms.substr(start));  // Add the last platform
 
             // Add the game object with both genres and platforms sets
-            games.emplace_back(name, metacritic, rating, achievementCount, genresSet, platformsSet);
+            games.emplace_back(name, metacritic, rating, suggestionsCount, achievementCount, genresSet, platformsSet);
         }
 
     }
