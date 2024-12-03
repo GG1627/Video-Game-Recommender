@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "Game.h"
 #include "Similar.h"
 #include "ParseData.h"
@@ -62,8 +63,30 @@ int main(){
     std::chrono::duration<double, std::milli> elapsed = end - start;
 
     cout << "Printing first 5 similar games" << endl;
-    for(int p=similarGames.size()-1; p > similarGames.size()-6 ; p--){
-            similarGames[p].dispaly();
+
+    // reverse the vector for in order printing
+    reverse(similarGames.begin(), similarGames.end());
+    for(int p=0; p < 5; p++){
+            if(p==0){
+                cout << "*******************  " << "1st  most similar game ->" << "  *******************" << endl;
+                similarGames[p].dispaly();
+            }
+            else if(p==1){
+                cout << "*******************  " << "2nd  most similar game ->" << "  *******************" << endl;
+                similarGames[p].dispaly();
+            }
+            else if(p==2){
+                cout << "*******************  " << "3rd  most similar game ->" << "  *******************" << endl;
+                similarGames[p].dispaly();
+            }
+            else if(p==3){
+                cout << "*******************  " << "4th  most similar game ->" << "  *******************" << endl;
+                similarGames[p].dispaly();
+            }
+            else if(p==4){
+                cout << "*******************  " << "5th  most similar game ->" << "  *******************" << endl;
+                similarGames[p].dispaly();
+            }
     }
 
     std::cout << "Elapsed time: " << elapsed.count() << " ms\n";
