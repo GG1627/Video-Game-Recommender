@@ -27,7 +27,8 @@ class Similar {
     }
 
     vector<Game> extractGenre(const string& gameName);
-    vector<Game> extractPlatform(const string& gameName, vector<Game> filteredGames);
+    vector<Game> extractPlatform(const string& gamePlatform, vector<Game> filteredGames);
+
 };
 
 

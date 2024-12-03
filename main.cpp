@@ -18,8 +18,12 @@ int main(){
 
     // get user input
     string gameName;
-    cout << "What game would you like to find?";
+    cout << "What game would you like to find?" << endl;
     getline(cin, gameName);
+
+    string gamePlatform;
+    cout << "What platform is the game on?" << endl;
+    getline(cin, gamePlatform);
 
     // find the game
     bool gameFound = false;  // flag to see if game found
@@ -39,7 +43,7 @@ int main(){
     Similar sim(op.games);
 
     vector<Game> similarGames = sim.extractGenre(gameName);  // Call the function to get similar games
-    similarGames = sim.extractPlatform(gameName, similarGames);  // Call the function to get similar games
+    similarGames = sim.extractPlatform(gamePlatform, similarGames);  // Call the function to get similar games
 
     int selection = 0;
     cout << "Select 1 for a QuickSort, Select 2 for a CocktailSort." << endl;
@@ -59,7 +63,7 @@ int main(){
 
     cout << "Printing first 5 similar games" << endl;
     for(int p=similarGames.size()-1; p > similarGames.size()-6 ; p--){
-        similarGames[p].dispaly();
+            similarGames[p].dispaly();
     }
 
     std::cout << "Elapsed time: " << elapsed.count() << " ms\n";
